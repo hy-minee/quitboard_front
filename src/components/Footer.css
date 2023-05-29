@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "DMSans-Regular";
+  src: url("../assets/fonts/DMSans-Regular.ttf");
+}
+
+.footer {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 1440px;
+  max-width: 100%;
+}
+
+.footer_contents {
+  font-family: "DMSans-Regular", sans-serif;
+  font-weight: bold;
+  color: white;
+}

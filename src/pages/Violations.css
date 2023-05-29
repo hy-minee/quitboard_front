@@ -1,0 +1,12 @@
+.violations_top {
+  background-image: url("../assets/images/violations_back.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center top;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.violations_bottom {
+  background-color: #c7c4c0;
+}

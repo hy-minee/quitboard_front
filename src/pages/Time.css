@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "IBMPlexSansKR-Regular";
+  src: url("../assets/fonts/IBMPlexSansKR-Regular.ttf");
+}
+
+.whole {
+  font-family: IBMPlexSansKR, sans-serif;
+}
+
+.time_top {
+  background-image: url("../assets/images/calendar1.png");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center top;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.time_bottom {
+  background-color: #626262;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}

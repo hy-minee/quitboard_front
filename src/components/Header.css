@@ -1,0 +1,24 @@
+header {
+  min-width: 1440px;
+  max-width: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto;
+  width: 98%;
+}
+
+nav a {
+  margin-right: 70px;
+}
+nav img {
+  margin-right: 70px;
+}
+
+nav a:nth-child(5) {
+  margin-right: 0;
+}

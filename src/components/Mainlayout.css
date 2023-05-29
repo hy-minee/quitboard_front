@@ -1,0 +1,10 @@
+.Mainlayout {
+  text-align: center;
+  height: auto;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+body {
+  overflow: auto;
+}

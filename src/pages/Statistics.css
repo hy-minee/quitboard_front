@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "IBMPlexSansKR-Regular";
+  src: url("../assets/fonts/IBMPlexSansKR-Regular.ttf");
+}
+
+.statistics-container {
+  font-family: "IBMPlexSansKR-Regular";
+}

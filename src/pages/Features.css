@@ -1,0 +1,92 @@
+@font-face {
+  font-family: "IBMPlexSansKR-Regular";
+  src: url("../assets/fonts/IBMPlexSansKR-Regular.ttf");
+}
+
+.video1 {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.feature-container {
+  font-family: "IBMPlexSansKR-Regular", sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+.feature1 {
+  margin-top: 10%;
+  height: 100%;
+}
+
+.featuresexplain1 {
+  font-size: 17px;
+  line-height: 1.7;
+  text-align: left;
+  margin-left: 8%;
+  width: 50%;
+}
+
+.featuresexplain2 {
+  font-size: 17px;
+  line-height: 1.7;
+  text-align: right;
+  margin-top: 8%;
+  margin-right: 8%;
+  margin-bottom: 10%;
+}
+
+.emphasis {
+  font-size: 35px;
+  font-weight: bold;
+  color: #006600;
+}
+
+.decrease_div {
+  display: flex;
+  justify-content: center;
+}
+.decrease {
+  margin: auto;
+  width: 10%;
+}
+
+.detectionexplain,
+.chartexplain {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.violation_ex_container {
+  margin-top: 5%;
+  padding-bottom: 15%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.violation_ex {
+  width: 25%;
+  height: 100%;
+  margin-bottom: 10%;
+  margin: 20px;
+  border: 3px solid black;
+}
+.violation_ex_img_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.violation_ex_img {
+  margin-top: 2%;
+  margin-left: 2.5%;
+  max-width: 95%;
+  max-height: 100%;
+}
+.violation_ex_title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 4%;
+}

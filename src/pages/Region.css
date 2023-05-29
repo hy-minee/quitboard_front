@@ -1,0 +1,12 @@
+.region_top {
+  background-image: url("../assets/images/region_back.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center top;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.region_bottom {
+  background-color: #afcae8;
+}
