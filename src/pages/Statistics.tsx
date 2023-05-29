@@ -21,6 +21,13 @@ function Statistics() {
       });
   }, []);
 
+  const data = [
+    { name: "Group A", value: 400 },
+    { name: "Group B", value: 300 },
+    { name: "Group C", value: 300 },
+    { name: "Group D", value: 200 },
+  ];
+
   return (
     <React.Fragment>
       <Flex
@@ -65,7 +72,7 @@ function Statistics() {
             </Text>
             <Flex direction={"row"} flex={2}>
               <Flex flex={1}>
-                <S_regionChart />
+                <S_regionChart data={data} />
               </Flex>
               <Flex flex={1}>
                 <S_violationChart />
