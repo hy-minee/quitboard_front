@@ -8,17 +8,21 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+interface violationCountObj {
+  data: DataItem[];
+}
+
 interface DataItem {
   name: string;
   value: number;
 }
 
-const data: DataItem[] = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
-];
+// const data: DataItem[] = [
+//   { name: "Group A", value: 400 },
+//   { name: "Group B", value: 300 },
+//   { name: "Group C", value: 300 },
+//   { name: "Group D", value: 200 },
+// ];
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
@@ -57,11 +61,13 @@ const renderCustomizedLabel = ({
   );
 };
 
-export default class Example extends PureComponent {
+export default class Example extends PureComponent<violationCountObj> {
   static demoUrl =
     "https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj";
 
   render(): JSX.Element {
+    const { data } = this.props;
+
     return (
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={400} height={400}>
@@ -75,7 +81,7 @@ export default class Example extends PureComponent {
             fill="#8884d8"
             dataKey="value"
           >
-            {data.map((entry, index) => (
+            {data.map((entry: any, index: number) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
