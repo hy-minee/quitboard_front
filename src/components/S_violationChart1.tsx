@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-interface SRegionChartProps {
+interface SViolationChartProps {
   data: { [key: string]: number };
 }
 
@@ -19,7 +19,7 @@ interface SRegionChartProps {
 //   { name: "Group D", value: 200 },
 // ];
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#C86DCE"];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -56,7 +56,7 @@ const renderCustomizedLabel = ({
   );
 };
 
-export default class Example extends PureComponent<SRegionChartProps> {
+export default class Example extends PureComponent<SViolationChartProps> {
   static demoUrl =
     "https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj";
 
