@@ -1,6 +1,5 @@
 import { Text, Box } from "@chakra-ui/react";
-import React, { useEffect, useState, Component } from "react";
-import axios from "axios";
+import React, { Component } from "react";
 import {
   AreaChart,
   Area,
@@ -35,34 +34,13 @@ interface STimeChartProps {
 export default class Example extends Component<STimeChartProps> {
   static demoUrl = "https://codesandbox.io/s/simple-line-chart-kec3v";
 
-  //useEffect(() => {
-  // API 요청
-  // axios
-  //   .get("/api/v1/violations")
-  //   .then((response) => {
-  // 데이터 처리
-  // 받아온 데이터를 차트 데이터 형식에 맞게 가공
-  //     const chartData = response.data.map((item) => ({
-  //       name: item.name,
-  //       누적치: item.yesterdayValue,
-  //       그제: item.beforeYesterdayValue,
-  //     }));
-
-  // 가공한 데이터를 상태로 설정
-  //     setChartData(chartData);
-  //    })
-  //    .catch((error) => {
-  //      console.error("Error fetching chart data:", error);
-  //    });
-  //}, []);
-
   convertData = (data: { [key: string]: number }) => {
     const convertedData: { name: string; 누적치: number }[] = [];
 
     for (let hour = 9; hour <= 21; hour++) {
       const count = data[hour.toString()] || 0;
       const convertedItem = {
-        name: `~${hour}:00`,
+        name: `~${hour + 1}:00`,
         누적치: count,
       };
       convertedData.push(convertedItem);
@@ -72,8 +50,6 @@ export default class Example extends Component<STimeChartProps> {
   };
 
   render(): JSX.Element {
-    //const [chartTimeData, setChartTimeData] = useState([]);
-
     const { data } = this.props;
     const convertedData = this.convertData(data);
 
@@ -86,6 +62,8 @@ export default class Example extends Component<STimeChartProps> {
           borderRadius: "10px",
           backgroundColor: "#111111",
           marginLeft: "3%",
+          paddingRight: "3%",
+          paddingBottom: "1%",
         }}
       >
         <Text
@@ -105,7 +83,6 @@ export default class Example extends Component<STimeChartProps> {
             margin={{
               right: 30,
               left: 20,
-              bottom: 15,
             }}
           >
             <XAxis padding={{ left: 30 }} axisLine={false} dataKey="name" />
@@ -126,13 +103,6 @@ export default class Example extends Component<STimeChartProps> {
                 <stop offset="95%" stopColor="#C86DCE" stopOpacity={0} />
               </linearGradient>
             </defs>
-            {/* <Area
-              type="monotone"
-              dataKey="누적치"
-              stroke="#8884d8"
-              fill="url(#colorUv)"
-              activeDot={{ r: 8 }}
-            /> */}
             <Area
               type="monotone"
               dataKey="누적치"

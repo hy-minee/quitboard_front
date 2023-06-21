@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, forwardRef } from "react";
-import ReactDatePicker, { ReactDatePickerProps } from "react-datepicker";
+import ReactDatePicker from "react-datepicker";
 import {
   InputGroup,
   Input,

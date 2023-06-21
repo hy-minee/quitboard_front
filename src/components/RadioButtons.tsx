@@ -1,16 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {
-  Button,
-  Grid,
-  GridItem,
-  Spacer,
-  Stack,
-  useToast,
-  Box,
-  Flex,
-} from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Button, Stack } from "@chakra-ui/react";
 
 const instance = axios.create({
   baseURL:
@@ -51,14 +41,6 @@ function RadioButtons() {
         </Button>
       ))}
     </Stack>
-    // <div>
-    //   {data.map((item, index) => (
-    //     <div key={index}>
-    //       <input type="radio" name="region" value={item} />
-    //       <label>{item}</label>
-    //     </div>
-    //   ))}
-    // </div>
   );
 }
 

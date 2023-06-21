@@ -7,7 +7,6 @@ import {
   Flex,
   Stack,
 } from "@chakra-ui/react";
-import React from "react";
 import { MdMap, MdWarning, MdWatchLater } from "react-icons/md";
 import { Link } from "react-router-dom";
 import searchpage from "../assets/images/searchpage.png";

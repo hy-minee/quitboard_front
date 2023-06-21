@@ -1,23 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import useMutation from "@tanstack/react-query";
 import axios from "axios";
-import {
-  useBoolean,
-  Button,
-  Grid,
-  GridItem,
-  Spacer,
-  Stack,
-  useToast,
-} from "@chakra-ui/react";
-import { Radio, RadioGroup } from "@chakra-ui/react";
+import { useBoolean, Button, Spacer, Stack, useToast } from "@chakra-ui/react";
 import { Flex } from "@chakra-ui/react";
 import { Text, Image } from "@chakra-ui/react";
 import jnumap from "../assets/images/jnumap.png";
-import CardItem from "../components/Carditem";
 import "./Region.css";
-import RadioButtons from "../components/RadioButtons";
 import Cardpage from "./Cardpage";
 
 const instance = axios.create({
@@ -40,7 +28,6 @@ function Region() {
   const [selectedRegion, setSelectedRegion] = useState<string>("");
   const [data, setData] = useState<string[]>([]);
 
-  const [regionArray, setRegionArray] = useState<string[]>([]);
   const [flag, setFlag] = useBoolean(false);
 
   useEffect(() => {
@@ -58,11 +45,6 @@ function Region() {
   };
 
   const toast = useToast();
-
-  // handleRegionChange 함수, Region 선택이 바뀔 때마다 문자열 변경
-  // const handleRegionChange = (value: string) => {
-  //   setSelectedRegion(value);
-  // };
 
   // const rawData = [
   //   {
@@ -158,12 +140,6 @@ function Region() {
   //   },
   // ];
 
-  // const handleSearch1 = () =>
-  //   instance.get("violaitons/choice/region").then((response) => response.data);
-
-  // const regionRadio = () =>
-  //   instance.get("violaitons/choice/region").then((response) => response.data);
-
   return (
     <React.Fragment>
       <Flex className="whole" flexDirection={["column"]} w={"100%"} h={"100%"}>
@@ -186,19 +162,20 @@ function Region() {
               위치 검색
             </Text>
             <Text textColor={"white"}>
-              하단 라디오 버튼을 클릭하고 Search 버튼을 눌러보세요. 위반 장면이
-              카드형태로 제공됩니다.
+              하단의 원하는 지역 버튼을 클릭하시면 위반 장면이 카드형태로
+              제공됩니다.
             </Text>
           </Flex>
 
           <Flex justifyContent="center" width={"100%"}>
             <Image
-              ml={"10%"}
+              ml={"25%"}
+              mr={"15%"}
               src={jnumap}
               alt="map"
               style={{
-                width: "40%",
-                height: "40%",
+                width: "30%",
+                height: "30%",
               }}
             />
             <Spacer />
@@ -207,9 +184,9 @@ function Region() {
                 {data.map((item) => (
                   <Button
                     size="lg"
-                    width="350px"
-                    height="70px"
-                    colorScheme="green"
+                    width="300px"
+                    height="55px"
+                    colorScheme="whiteAlpha"
                     variant="solid"
                     onClick={() => {
                       setSelectedRegion(item);
@@ -226,30 +203,6 @@ function Region() {
                   </Button>
                 ))}
               </Stack>
-              {/* <RadioGroup
-                marginBottom={"20%"}
-                colorScheme="white"
-                textColor={"white"}
-                onChange={handleRegionChange}
-              >
-                <Stack spacing={[1, 5]} direction={["column", "column"]}>
-                  <Radio value="공대7호관" size="lg">
-                    공대7호관
-                  </Radio>
-                  <Radio value="공대쪽문" size="lg">
-                    공대쪽문
-                  </Radio>
-                  <Radio value="자연대 3호관" size="lg">
-                    자연대 3호관
-                  </Radio>
-                  <Radio value="인문대 3호관" size="lg">
-                    인문대 3호관
-                  </Radio>
-                  <Radio value="기숙사9동" size="lg">
-                    기숙사9동
-                  </Radio>
-                </Stack>
-              </RadioGroup> */}
             </Flex>
           </Flex>
         </Flex>

@@ -1,22 +1,9 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
-import {
-  Button,
-  Flex,
-  Text,
-  Spacer,
-  GridItem,
-  Grid,
-  Box,
-  useBoolean,
-} from "@chakra-ui/react";
-import Radiogroup from "../components/CustomRadio";
-import CustomRadio from "../components/CustomRadio";
-import CardItem from "../components/Carditem";
+import { Button, Flex, Text, Spacer, Box, useBoolean } from "@chakra-ui/react";
 import ViolationRadioGroup from "../components/CustomRadio";
 import "./Violations.css";
-import cardex from "../assets/images/cardex.png";
 import Cardpage from "./Cardpage";
 
 const instance = axios.create({
@@ -58,17 +45,6 @@ function Violation() {
 
   //search 버튼 이벤트
   const handleSearch2 = () => {
-    // 선택된 위반
-    //const selectedViolationValue = selectedViolation;
-
-    // 선택된 위반에 해당하는 데이터를 필터링
-    //  const filteredData = rawData.filter((item) =>
-    //    item.violation.includes(selectedViolationValue)
-    //  );
-
-    // 필터링된 데이터를 state에 저장
-    // setData(filteredData);
-    //setSelectedViolation(item);
     setSelectedViolation(selectedReady);
     fetchData();
     setFlag.on();

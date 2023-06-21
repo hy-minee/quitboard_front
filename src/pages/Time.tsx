@@ -1,22 +1,11 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Calendar from "../components/Calendar";
 import axios from "axios";
-import {
-  Image,
-  Button,
-  Flex,
-  Text,
-  Spacer,
-  Box,
-  GridItem,
-  Grid,
-  useBoolean,
-} from "@chakra-ui/react";
+import { Button, Flex, Text, Spacer, Box, useBoolean } from "@chakra-ui/react";
 import "./Time.css";
 import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
-import CardItem from "../components/Carditem";
 import Cardpage from "./Cardpage";
 
 const instance = axios.create({
@@ -58,13 +47,8 @@ function Time() {
     const selectedDateString = format(selectedDate, "yyyy-MM-dd");
     setStringDate(selectedDateString);
 
-    // // 선택된 날짜에 해당하는 데이터를 필터링
-    // const filteredData = rawData.filter((item) =>
-    //   item.date.startsWith(selectedDateString)
-    // );
     fetchData(stringDate);
-    // 필터링된 데이터를 state에 저장
-    // setData(filteredData);
+
     setFlag.on();
   };
 

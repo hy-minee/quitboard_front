@@ -1,17 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Heading,
-  SimpleGrid,
-  Button,
-  Text,
-  ButtonGroup,
-  Divider,
-  Stack,
-  Image,
-} from "@chakra-ui/react";
+import { Card, CardBody, Heading, Text, Stack, Image } from "@chakra-ui/react";
 import { useState } from "react";
 import ImageViewModal from "./CarditemModal";
 
@@ -42,7 +29,7 @@ function CardItem({ data }: CarditemProps) {
       <CardBody>
         <Image
           objectFit="cover"
-          src={data.img}
+          src={data.img.slice(0, -4) + ".jpg"}
           alt="Image of the violation"
           borderRadius="lg"
           onClick={handleImageClick}

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.css";
-import { Flex, Box, Spacer, Button } from "@chakra-ui/react";
-import { Text, Image } from "@chakra-ui/react";
+import { Flex, Box, Button } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import ImageSlide from "../components/ImageSlide";
 import { Link } from "react-router-dom";
 

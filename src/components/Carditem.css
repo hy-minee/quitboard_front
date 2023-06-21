@@ -1,0 +1,7 @@
+.stopped-gif {
+  /* 첫 번째 프레임 이미지 파일 경로를 background-image로 설정 */
+  background-image: url("path/to/first-frame-image.jpg");
+  /* 이미지 크기 및 배경 속성 설정 */
+  background-size: cover;
+  background-position: center;
+}

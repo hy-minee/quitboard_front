@@ -1,66 +1,90 @@
-import React, { useEffect, useState, Component } from "react";
-import { PieChart, Pie, Tooltip, ResponsiveContainer } from "recharts";
-import axios from "axios";
+import React, { PureComponent, ReactNode } from "react";
+import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
 
-interface RegionData {
-  [key: string]: number;
+interface SRegionChartProps {
+  data: { [key: string]: number };
 }
 
-interface ChartData {
-  name: string;
-  value: number;
-}
+// const data: DataItem[] = [
+//   { name: "Group A", value: 400 },
+//   { name: "Group B", value: 300 },
+//   { name: "Group C", value: 300 },
+//   { name: "Group D", value: 200 },
+// ];
 
-const data01 = [
-  { name: "공대7호관", value: 400 },
-  { name: "공대쪽문", value: 300 },
-  { name: "자연대 3호관", value: 300 },
-  { name: "인문대 3호관", value: 200 },
-  { name: "기숙사9동", value: 278 },
+const COLORS = [
+  "#FFBB28",
+  "#FF8042",
+  "#C86DCE",
+  "#0088FE",
+  "#00C49F",
+  "#FFB7C4",
 ];
 
-export default class Example extends Component {
-  static demoUrl = "https://codesandbox.io/s/two-simple-pie-chart-otx9h";
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+}: {
+  cx: number;
+  cy: number;
+  midAngle: number;
+  innerRadius: number;
+  outerRadius: number;
+  percent: number;
+  index: number;
+}): ReactNode => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
-  render() {
-    //  const [chartData, setChartData] = useState<ChartData[]>([]);
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="white"
+      textAnchor={x > cx ? "start" : "end"}
+      dominantBaseline="central"
+    >
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
 
-    //useEffect(() => {
-    // 서버에서 데이터 받아오기
-    //  axios
-    //    .get<{ regionCountObj: RegionData }>("/api/v1/violations")
-    //    .then((response) => {
-    // 받아온 데이터에서 regionCountObj 가져오기
-    //      const regionData = response.data.regionCountObj;
+export default class Example extends PureComponent<SRegionChartProps> {
+  static demoUrl =
+    "https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj";
 
-    // 데이터 형식을 PieChart에 맞게 가공
-    //      const chartData: ChartData[] = Object.entries(regionData).map(
-    //        ([name, value]) => ({
-    //          name,
-    //          value,
-    //        })
-    //      );
+  render(): JSX.Element {
+    const { data } = this.props;
 
-    // 가공한 데이터를 상태로 설정
-    //      setChartData(chartData);
-    //    })
-    //    .catch((error) => {
-    //      console.error("Error fetching chart data:", error);
-    //    });
-    //}, []);
     return (
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={400} height={400}>
           <Pie
-            dataKey="value"
-            isAnimationActive={false}
-            data={data01}
+            data={Object.entries(data)}
             cx="50%"
             cy="50%"
+            labelLine={false}
+            label={renderCustomizedLabel}
             outerRadius={80}
-            fill="#59B4F0"
-            label
-          />
+            fill="#8884d8"
+            dataKey="1"
+            nameKey="0"
+          >
+            {Object.entries(data).map(
+              ([key, value]: [string, number], index: number) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              )
+            )}
+          </Pie>
           <Tooltip />
         </PieChart>
       </ResponsiveContainer>

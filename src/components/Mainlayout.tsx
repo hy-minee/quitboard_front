@@ -1,18 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Mainlayout.css";
 import Overlay from "../pages/Overlay";
 import intro from "../assets/images/Intro.svg";
 import Header from "./Header";
 import Footer from "./Footer";
 import MainContents from "./MainContents";
-import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 
 function Mainlayout() {
   const [showImage, setShowImage] = useState(true);
 
   const handleImageClick = () => {
     setShowImage(false);
+    localStorage.setItem("showImage", "false");
   };
+
+  useEffect(() => {
+    const storedShowImage = localStorage.getItem("showImage");
+    if (storedShowImage === "false") {
+      setShowImage(false);
+    }
+  }, []);
+
   return (
     <div
       className="Mainlayout"

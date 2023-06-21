@@ -17,8 +17,9 @@ interface ModalProps {
 }
 
 function ImageViewModal({ isOpen, onClose, image }: ModalProps) {
+  console.log(image);
   return (
-    <Modal size={"md"} isOpen={isOpen} onClose={onClose}>
+    <Modal size={"lg"} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Original Image</ModalHeader>

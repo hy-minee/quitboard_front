@@ -1,8 +1,8 @@
-import { Flex, Box, Spacer, Text } from "@chakra-ui/react";
+import { Flex, Spacer, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import S_regionChart from "../components/S_regionChart1";
+import S_regionChart from "../components/S_regionChart";
 import S_timeChart from "../components/S_timeChart";
-import S_violationChart from "../components/S_violationChart1";
+import S_violationChart from "../components/S_violationChart";
 import "./Statistics.css";
 import axios from "axios";
 
@@ -74,18 +74,6 @@ function Statistics() {
     console.log(totalCount.regionCountObj);
     console.log(totalCount.detectedHourCountObj);
   };
-  // useEffect(() => {
-  //   // API 요청
-  //   fetch("/api/images/count")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       // 이미지 개수 데이터 처리
-  //       setaccumulatedCount(data.count);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching count:", error);
-  //     });
-  // }, []);
 
   return (
     <React.Fragment>
@@ -96,7 +84,7 @@ function Statistics() {
         direction={"column"}
         w={"100%"}
       >
-        <Flex direction={"column"} w={"100%"} mt={"2%"}>
+        <Flex direction={"column"} w={"100%"} mt={"3%"}>
           <Text
             textAlign={"center"}
             textColor={"white"}
@@ -106,33 +94,92 @@ function Statistics() {
             분야별 현황
           </Text>
         </Flex>
-        <Spacer />
-        <Flex direction="row" w="100%">
-          <Flex flex={3}>
+
+        <Flex direction="row" w="100%" h={"60vh"} mt={"3%"} mb={20}>
+          <Flex flex={5}>
             <S_timeChart data={totalCount.detectedHourCountObj} />
           </Flex>
+          <Flex flex={3} align={"center"} justify={"center"}>
+            <Text textAlign={"right"} textColor={"lightgray"}>
+              <Text fontSize={"2xl"} fontWeight={"bold"} textColor={"white"}>
+                위반 시간의 누적치 현황
+              </Text>
+              <br />
+              위반이 일어난 시간을 비교해보세요.
+              <br />
+              오전 10시부터 오후 22시까지의 정보를 담았고
+              <br />
+              각각 1시간 동안 일어난 위반 누적치를 나타냅니다.
+              <br />
+              그래프에 커서를 갖다대면 정확한 누적치를 확인할 수 있습니다.
+              <br />
+              <br />
+              <br />
+              어느 시간대에 가장 많은 위반이 일어났나요?
+              <br />
+            </Text>
+          </Flex>
+        </Flex>
+
+        <Flex direction={"row"} h={"70vh"} mb={20} w={"100%"}>
+          <Spacer />
+          <Flex flex={5}>
+            <Flex direction={"column"} justify={"center"} ml={20}>
+              <Spacer />
+              <Spacer />
+              <Text textAlign={"left"} textColor={"lightgray"}>
+                <Text fontSize={"2xl"} fontWeight={"bold"} textColor={"white"}>
+                  지역별 위반 비율
+                </Text>
+                <br />
+                위반이 일어난 지역의 비율을 확인해보세요.
+                <br />
+                그래프에 커서를 올리면 각 지역명과 함께 발생 건수를 확인할 수
+                있습니다.
+                <br />
+                <br />
+              </Text>
+              <Spacer />
+              <Text textAlign={"left"} textColor={"lightgray"}>
+                <Text fontSize={"2xl"} fontWeight={"bold"} textColor={"white"}>
+                  위반 종류별 비율
+                </Text>
+                <br />
+                발생한 위반 사항의 비율을 확인해보세요.
+                <br />
+                헬멧 미착용, 2인 이상 탑승, 인도 주행 총 세 가지 위반을
+                감지합니다.
+                <br />
+                그래프에 커서를 올리면 위반명과 함께 발생 건수를 확인할 수
+                있습니다.
+                <br />
+                <br />
+              </Text>
+              <Spacer />
+            </Flex>
+          </Flex>
+          <Spacer />
           <Flex
-            pl={"2%"}
-            ml={"2%"}
-            mt={"10%"}
             mr={"3%"}
-            flex={2}
             direction="column"
             backgroundColor={"#111111"}
             borderRadius={"10px"}
+            flex={4}
           >
             <Text
-              pt={"2%"}
-              fontSize={"20px"}
-              textAlign={"left"}
+              mr={"7%"}
+              pt={"6%"}
+              fontSize={"28px"}
+              textAlign={"right"}
               textColor={"white"}
             >
-              지역 및 위반 종류별 현황
+              지역 및 위반 종류별 비율
             </Text>
-            <Flex direction={"row"} flex={2}>
+            <Flex direction={"column"} flex={2}>
               <Flex flex={1}>
                 <S_regionChart data={totalCount.regionCountObj} />
               </Flex>
+
               <Flex flex={1}>
                 <S_violationChart data={totalCount.violationCountObj} />
               </Flex>
@@ -140,17 +187,10 @@ function Statistics() {
           </Flex>
         </Flex>
 
-        <Spacer />
         <Text fontSize={"15px"} textAlign={"center"} textColor={"lightgray"}>
           {/* 누적 촬영 수 : {totalCount.detectedHourCountObj.} */}
         </Text>
-        <Spacer />
-        <Text
-          ml={"5"}
-          fontSize={"12px"}
-          textAlign={"left"}
-          textColor={"lightgray"}
-        >
+        <Text ml={"5"} fontSize={"12px"} textAlign={"left"} textColor={"gray"}>
           참고: 통계치는 전날 자정을 기준으로 업데이트 됩니다.
         </Text>
       </Flex>

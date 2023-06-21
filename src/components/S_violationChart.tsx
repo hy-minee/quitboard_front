@@ -1,62 +1,84 @@
-import React, { useEffect, useState, Component } from "react";
-import { PieChart, Pie, Tooltip, ResponsiveContainer } from "recharts";
-import axios from "axios";
+import React, { PureComponent, ReactNode } from "react";
+import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
 
-interface ViolationData {
-  [key: string]: number;
+interface SViolationChartProps {
+  data: { [key: string]: number };
 }
 
-interface ChartData {
-  name: string;
-  value: number;
-}
+// const data: DataItem[] = [
+//   { name: "Group A", value: 400 },
+//   { name: "Group B", value: 300 },
+//   { name: "Group C", value: 300 },
+//   { name: "Group D", value: 200 },
+// ];
 
-const data01 = [
-  { name: "헬멧 미착용", value: 400 },
-  { name: "2인 이상 탑승", value: 300 },
-  { name: "인도 주행", value: 300 },
-];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
-export default class Example extends Component {
-  static demoUrl = "https://codesandbox.io/s/two-simple-pie-chart-otx9h";
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+  index,
+}: {
+  cx: number;
+  cy: number;
+  midAngle: number;
+  innerRadius: number;
+  outerRadius: number;
+  percent: number;
+  index: number;
+}): ReactNode => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
-  render() {
-    //  const [chartData, setChartData] = useState<ChartData[]>([]);
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="white"
+      textAnchor={x > cx ? "start" : "end"}
+      dominantBaseline="central"
+    >
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
 
-    //useEffect(() => {
-    // 서버에서 데이터 받아오기
-    //  axios
-    //    .get<{ violationCountObj: ViolationData }>("/api/v1/violations")
-    //    .then((response) => {
-    // 받아온 데이터에서 violationCountObj 가져오기
-    //      const violationData: ViolationData = response.data.violationCountObj;
+export default class Example extends PureComponent<SViolationChartProps> {
+  static demoUrl =
+    "https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj";
 
-    // 데이터 형식을 PieChart에 맞게 가공
-    //      const chartData: ChartData[] = Object.entries(violationData).map(
-    //        ([name, value]) => ({ name, value })
-    //      );
+  render(): JSX.Element {
+    const { data } = this.props;
 
-    // 가공한 데이터를 상태로 설정
-    //      setChartData(chartData);
-    //    })
-    //    .catch((error) => {
-    //      console.error("Error fetching chart data:", error);
-    //    });
-    //}, []);
     return (
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={400} height={400}>
           <Pie
-            dataKey="value"
-            isAnimationActive={false}
-            data={data01}
+            data={Object.entries(data)}
             cx="50%"
-            cy="50%"
+            cy="40%"
+            labelLine={false}
+            label={renderCustomizedLabel}
             outerRadius={80}
-            fill="#ECDD57"
-            label
-          />
-
+            fill="#8884d8"
+            dataKey="1"
+            nameKey="0"
+          >
+            {Object.entries(data).map(
+              ([key, value]: [string, number], index: number) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              )
+            )}
+          </Pie>
           <Tooltip />
         </PieChart>
       </ResponsiveContainer>
